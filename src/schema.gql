@@ -1,0 +1,31 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type CarType {
+  id: ID!
+  brand: String!
+  model: String!
+  officeId: Int!
+  color: String!
+  imageUrl: String!
+}
+
+type Query {
+  getCar: [CarType!]!
+  searchOne(id: String!): CarType!
+}
+
+type Mutation {
+  addCar(input: CarInput!): CarType!
+  deleteCar(id: String!): Boolean!
+}
+
+input CarInput {
+  id: ID!
+  brand: String!
+  model: String!
+  officeId: Int!
+  color: String!
+  imageUrl: String!
+}

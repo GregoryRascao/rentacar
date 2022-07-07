@@ -1,5 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
+import { ID } from 'graphql-ws';
 import { Model } from 'mongoose';
 import { catchError, from, map, Observable, throwError } from 'rxjs';
 import { CarInput } from './models/car.input';
@@ -26,13 +27,13 @@ export class CarService {
    * @param id 
    * @returns 
    */
-  getById(id : string){
+  getById(id : ID){
     if (id === undefined) {
       return throwError(
         new BadRequestException('The id parameter is Missing and/or Invalid'),
       );
     }
-    return from(this.carModel.find({ _id: id })).pipe(
+    return from(this.carModel.findById({ _id: id })).pipe(
       map((car) => {
         return car
       })
@@ -72,4 +73,15 @@ export class CarService {
       })
     )
   }
+
+  /**
+   * Upadte the selected car
+   * @param id 
+   * @param carType 
+   * @returns 
+   */
+  updateCar(id, carType: CarInput): Observable<Car> {
+    return from(this.carModel.findOneAndUpdate({ _id: id }, carType))
+  }
+
 }

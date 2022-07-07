@@ -3,29 +3,49 @@
 # ------------------------------------------------------
 
 type CarType {
-  id: ID!
+  _id: ID!
   brand: String!
   model: String!
-  officeId: Int!
   color: String!
   imageUrl: String!
+}
+
+type OfficeType {
+  _id: ID!
+  name: String!
+  country: String!
+  address: String!
+  city: String!
+  carsId: [String!]!
 }
 
 type Query {
   getCar: [CarType!]!
   searchOne(id: String!): CarType!
+  getOffice: [OfficeType!]!
+  findOne(id: String!): OfficeType!
 }
 
 type Mutation {
   addCar(input: CarInput!): CarType!
   deleteCar(id: String!): Boolean!
+  updateCar(id: String!, input: CarInput!): CarType!
+  addOffice(input: OfficeInput!): OfficeType!
+  deleteOffice(id: String!): Boolean!
+  updateOffice(id: String!, input: OfficeInput!): OfficeType!
 }
 
 input CarInput {
-  id: ID!
   brand: String!
   model: String!
-  officeId: Int!
   color: String!
   imageUrl: String!
+}
+
+input OfficeInput {
+  name: String!
+  country: String!
+  address: String!
+  city: String!
+  carsId: [String!]!
 }

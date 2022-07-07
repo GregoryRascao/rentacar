@@ -1,4 +1,5 @@
 import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
+import { ID } from "graphql-ws";
 import { CarService } from "./car.service";
 import { CarType } from "./models/car.dto";
 import { CarInput } from "./models/car.input";
@@ -45,5 +46,16 @@ export class CarsResolver {
   @Mutation(()=> Boolean)
   async deleteCar(@Args('id') id: string){
     return this.carService.remove(id)
+  }
+
+  /**
+   * 
+   * @param id
+   * @param input 
+   * @returns 
+   */
+  @Mutation(() => CarType)
+  async updateCar(@Args('id') id: string, @Args('input') input: CarInput){
+    return this.carService.updateCar(id, input)
   }
 }

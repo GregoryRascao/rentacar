@@ -6,15 +6,18 @@ import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CarModule } from './cars/car.module';
+import { OfficeModule } from './office/office.module';
+
 
 @Module({
   imports: [
+    CarModule,
+    OfficeModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
     }),
-    CarModule,
-    MongooseModule.forRoot('mongodb://docker:mongopw@localhost:55000')
+    MongooseModule.forRoot('mongodb://docker:mongopw@localhost:55000'),
   ],
   controllers: [AppController],
   providers: [AppService],

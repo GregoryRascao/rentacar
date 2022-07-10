@@ -1,7 +1,9 @@
+import { ObjectId } from "mongoose";
+
 export class Car {
+  _id: ObjectId;
   brand: string;
   model: string;
-  officeId: number;
   color: string;
   imageUrl: string
 }

@@ -1,21 +1,22 @@
-import { Field, ID, Int, ObjectType } from "@nestjs/graphql";
+import { Field, ID, ObjectType} from "@nestjs/graphql";
 import { ObjectId } from "mongoose";
 
 @ObjectType()
-export class CarType {
+export class BookingType {
 
   @Field(() => ID)
   _id: ObjectId
 
   @Field(() => String)
-  brand: string;
-  
-  @Field(() => String)
-  model: string;
-  
-  @Field(() => String)
-  color: string;
+  name: string;
 
   @Field(() => String)
-  imageUrl: string;
+  carId: string;
+
+  @Field(() => String)
+  officeId: string;
+
+  @Field(() => String)
+  date: string;
+
 }

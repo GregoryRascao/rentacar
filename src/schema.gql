@@ -2,11 +2,27 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type BookingType {
+  _id: ID!
+  name: String!
+  carId: String!
+  officeId: String!
+  date: String!
+}
+
+type OfficeType {
+  _id: ID!
+  name: String!
+  country: String!
+  address: String!
+  city: String!
+  carsId: [String!]!
+}
+
 type CarType {
-  id: ID!
+  _id: ID!
   brand: String!
   model: String!
-  officeId: Int!
   color: String!
   imageUrl: String!
 }
@@ -14,18 +30,44 @@ type CarType {
 type Query {
   getCar: [CarType!]!
   searchOne(id: String!): CarType!
+  findInOffice(id: String!): [CarType!]!
+  getOffice: [OfficeType!]!
+  findOne(id: String!): BookingType!
+  getAllBooking: [BookingType!]!
 }
 
 type Mutation {
   addCar(input: CarInput!): CarType!
   deleteCar(id: String!): Boolean!
+  updateCar(id: String!, input: CarInput!): CarType!
+  addInOffice(id: String!, carId: String!): OfficeType!
+  removeCarInOffice(id: String!, carId: String!): OfficeType!
+  addOffice(input: OfficeInput!): OfficeType!
+  deleteOffice(id: String!): Boolean!
+  updateOffice(id: String!, input: OfficeInput!): OfficeType!
+  booking(carId: String!, officeId: String!): BookingType!
+  deleteBooking(id: String!): Boolean!
+  updateBooking(id: String!, input: BookingInput!): BookingType!
 }
 
 input CarInput {
-  id: ID!
   brand: String!
   model: String!
-  officeId: Int!
   color: String!
   imageUrl: String!
+}
+
+input OfficeInput {
+  name: String!
+  country: String!
+  address: String!
+  city: String!
+  carsId: [String!]!
+}
+
+input BookingInput {
+  name: String!
+  carId: String!
+  officeId: String!
+  date: String!
 }

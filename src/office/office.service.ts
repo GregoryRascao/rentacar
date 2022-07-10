@@ -80,7 +80,7 @@ export class OfficeService {
      * @param officeType 
      * @returns 
      */
-    updateoffice(id, officeType: OfficeInput): Observable<Office> {
+    updateOffice(id, officeType: OfficeInput): Observable<Office> {
       return from(this.officeModel.findOneAndUpdate({ _id: id }, officeType))
     }
 }

@@ -55,6 +55,6 @@ export class OfficeResolver {
    */
   @Mutation(() => OfficeType)
   async updateOffice(@Args('id') id: string, @Args('input') input: OfficeInput) {
-    return this.officeService.updateoffice(id, input)
+    return this.officeService.updateOffice(id, input)
   }
 }

@@ -5,6 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { BookingModule } from './booking/booking.module';
 import { CarModule } from './cars/car.module';
 import { OfficeModule } from './office/office.module';
 
@@ -13,6 +14,7 @@ import { OfficeModule } from './office/office.module';
   imports: [
     CarModule,
     OfficeModule,
+    BookingModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),

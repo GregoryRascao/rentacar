@@ -1,5 +1,6 @@
 import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
 import { ID } from "graphql-ws";
+import { OfficeType } from "../office/models/office.dto";
 import { CarService } from "./car.service";
 import { CarType } from "./models/car.dto";
 import { CarInput } from "./models/car.input";
@@ -57,5 +58,20 @@ export class CarsResolver {
   @Mutation(() => CarType)
   async updateCar(@Args('id') id: string, @Args('input') input: CarInput){
     return this.carService.updateCar(id, input)
+  }
+
+  @Query(() => [CarType])
+  async findInOffice(@Args('id') id: string) {
+    return this.carService.findInOffice(id)
+  }
+
+  @Mutation(() => OfficeType)
+  async addInOffice(@Args('id') id: string, @Args('carId') carId: string){
+    return this.carService.addInOffice(id, carId)
+  }
+
+  @Mutation(()=> OfficeType)
+  async removeCarInOffice(@Args('id') id: string, @Args('carId') carId: string){
+    return this.carService.deleteCarInOffice(id, carId);
   }
 }

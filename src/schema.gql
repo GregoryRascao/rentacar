@@ -32,8 +32,9 @@ type Query {
   searchOne(id: String!): CarType!
   findInOffice(id: String!): [CarType!]!
   getOffice: [OfficeType!]!
-  findOne(id: String!): BookingType!
+  findOne(id: String!): OfficeType!
   getAllBooking: [BookingType!]!
+  findOneReservation(id: String!): BookingType!
 }
 
 type Mutation {

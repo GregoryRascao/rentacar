@@ -23,7 +23,7 @@ export class BookingResolver {
       * @returns Get one reservation
       */
      @Query(() => BookingType)
-     async findOne(@Args('id') id: string) {
+     async findOneReservation(@Args('id') id: string) {
        return this.bookingService.getById(id)
      }
    
